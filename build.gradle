@@ -32,6 +32,8 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     // [3] mysal jdbc
     runtimeOnly 'com.mysql:mysql-connector-j'
+    // [4] websocket
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
 }
 
 tasks.named('test') {
