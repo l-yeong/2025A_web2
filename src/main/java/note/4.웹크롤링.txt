@@ -36,3 +36,5 @@
     3) 마크업(요소)의 데이터 가져오기
         String text = element.text();
             <a href="">부평역</a> ---> '부평역'
+    4) 마크업(요소)의 속성값 가져오기
+        String attr = element.attr("속성명");

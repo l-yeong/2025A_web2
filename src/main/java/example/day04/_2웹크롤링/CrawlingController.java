@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -19,4 +20,15 @@ public class CrawlingController {
     public List<String> task1(){
         return crawlingService.task1();
     }//func end
+
+    // 서점 크롤링
+    @GetMapping("/craw2")
+    public List<Map<String,String>>task2(){
+        return crawlingService.task2();
+    }//func end
+
+    @GetMapping("/craw3")
+    public Map<String,String> task3(){
+        return crawlingService.task3();
+    }
 }//class end
