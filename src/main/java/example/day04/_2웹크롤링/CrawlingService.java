@@ -49,25 +49,25 @@ public class CrawlingService {
     public List<Map<String, String>> task2() {
         List<Map<String, String>> list = new ArrayList<>(); // 2-1 : 책 정보들을 담을 리스트
         try {
-            for (int page = 1; page < 3; page++) { //page를 1부터 3까지 반복
+            for (int page = 1; page <= 3; page++) { //page를 1부터 3까지 반복
                 // 2-2 : 크롤링할 주소
                 String URL = "https://www.yes24.com/product/category/daybestseller?" +
                         "categoryNumber=001&pageNumber="+page+
-                        "pageSize=24&type=day";
+                        "&pageSize=24&type=day";
                 // 2-3 : JSOUP 활용한 지정 주소 HTML로 가져오기
                 Document document = Jsoup.connect(URL).get();
                 // 2-4 : 책제목(.info_name > .gd_name ) 과 책가격( .info_price > yes_b )
                 Elements nameList = document.select(".info_name > .gd_name");
-                Elements priceiList = document.select(".info_price > .txt_num >.yes_b");
+                Elements priceList = document.select(".info_price > .txt_num >.yes_b");
                 Elements imgList = document.select(".img_bdr .lazy");
                 System.out.println("nameList = " + nameList);
-                System.out.println("priceiList = " + priceiList);
+                System.out.println("priceiList = " + priceList);
                 System.out.println("imgList = " + imgList);
 
                 // 2-5 : 반복문을 이용한 책정보 구성
                 for (int i = 0; i < nameList.size(); i++) {
                     String name = nameList.get(i).text(); //i번째 책제목 1개씩 호출
-                    String price = priceiList.get(i).text(); //i번째 책가격 1개씩 호출
+                    String price = priceList.get(i).text(); //i번째 책가격 1개씩 호출
                     String img = imgList.get(i).attr("data-original"); //i번째 책이미지 1개씩 호출
                     Map<String, String> map = new HashMap<>();
                     map.put("name", name);
