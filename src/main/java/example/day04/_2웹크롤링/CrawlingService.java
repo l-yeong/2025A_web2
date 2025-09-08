@@ -80,7 +80,7 @@ public class CrawlingService {
         return list;
     }//func end
 
-    // 3. 다음 ******** 날씨에 동적페이지는 JSOUP 안된다 ******** 링크가 바뀐다
+    // 3. 다음 ******** 날씨에 동적페이지는 JSOUP 안된다 ******** 링크가 바뀐다 --> 방안 :  셀레니움 *********
     public Map<String,String> task3(){
         Map<String,String> map = new HashMap<>(); // 3-1 날씨정보를 저장할 맵
         try{
