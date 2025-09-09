@@ -88,13 +88,13 @@ public class CrawlingService {
         for(WebElement review : webElements){ // 여러개 리뷰 요소들을 하나씩 조회
             String text = review.getText();
             if(list.contains(text)){ //[중복방지]  **만약에 스크롤 내리고 리스트내 앞전의 리뷰가 포함되면 생략/패스**
-                continue;
+                continue; //가장 가까운 반복문으로 이동 -> 2-7
             }//if end
             list.add(text);
         }//for end
-            // *만약에 비어있거나 list에 추가적인 내용이 없으면 2-9 반복문 종료
-            int endCount = list.size();
-            if(startCount==endCount) break;
+            // *만약에 비어있거나 list에 추가적인 내용이 없으면
+            int endCount = list.size(); // 크롤링 데이터 변화가 없으면
+            if(startCount==endCount) break; // 2-9 반복문 종료
         // ============= 자바에서 JS 사용 : 스크롤을 내리는 작업 ============= //
             // 2-8 : 자바스크립트 조작하는 객체, 셀레니움객체를 자바스크립트실행겍체로 변환
             JavascriptExecutor js = (JavascriptExecutor) webDriver;
