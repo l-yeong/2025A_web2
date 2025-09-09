@@ -87,6 +87,9 @@ public class CrawlingService {
 
         for(WebElement review : webElements){ // 여러개 리뷰 요소들을 하나씩 조회
             String text = review.getText();
+            if(list.contains(text)){ //[중복방지]  **만약에 스크롤 내리고 리스트내 앞전의 리뷰가 포함되면 생략/패스**
+                continue;
+            }//if end
             list.add(text);
         }//for end
 
