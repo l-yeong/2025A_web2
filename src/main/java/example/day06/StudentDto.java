@@ -13,4 +13,4 @@ public class StudentDto {
         private int kor;
         private int math;
 
-}//class end
+}//class end1
