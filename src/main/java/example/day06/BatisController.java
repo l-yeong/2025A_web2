@@ -1,8 +1,6 @@
 package example.day06;
 
 import lombok.RequiredArgsConstructor;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
