@@ -51,4 +51,4 @@ public class BatisController {
         return ResponseEntity.ok(result); // ok==200
     }//func end
 
-}//class end
+}//class end1
