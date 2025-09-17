@@ -36,5 +36,9 @@ const create = createRoot(root);
 // import Component2 from './example/day01/Component2.jsx';
 // import Component3 from './example/day01/Component3.jsx';
 // import Task1 from './example/day01/Task1';
-import Task2 from './example/day01/Task2';
-create.render(<Task2/>)
+// import Task2 from './example/day01/Task2';
+// import Component4 from './example/day02/Component4';
+// import Component5 from './example/day02/Component5';
+// import Component6 from './example/day02/Component6';
+import Component7 from './example/day02/Component7';
+create.render(<Component7/>)
