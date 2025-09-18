@@ -14,6 +14,8 @@ import java.util.Map;
 @RestController
 @RequestMapping("/board")
 @RequiredArgsConstructor
+//@CrossOrigin(value=허용할 주소)  CORS(서로 다른 서버간의 요청/응답 허용) 정책을 설정
+@CrossOrigin(value="http://localhost:5173")
 public class BoardController {
     private final BoardService boardService;
 
