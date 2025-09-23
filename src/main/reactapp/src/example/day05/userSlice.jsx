@@ -1,6 +1,6 @@
 // day05 -> userSilce.jsx
 
-import {createSlice, creatreSlice} from '@reduxjs/toolkit'
+import {createSlice} from '@reduxjs/toolkit'
 
 // 1. 리덕스 설치
 // npm i @reduxjs/toolkit
