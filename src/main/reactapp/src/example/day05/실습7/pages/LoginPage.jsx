@@ -1,0 +1,25 @@
+import { useNavigate } from "react-router-dom";
+import { useDispatch} from 'react-redux';
+import { login} from "../store/userSlice";
+export default function Login(props) {
+
+    //[1] 액션 (상태변경) 하기 위한 dispatch 함수 가져오기
+     const dispatch = useDispatch();
+
+     //[2] 가상 URL로 페이지 전환하기 위한 useNavigate 함수 가져오기
+     const navigate = useNavigate();
+
+     //1. 로그인 처리 함수 정의 : axios 생략
+     const onLogin = async()=>{
+        alert('[로그인 성공]'); //안내
+        // dispatch(login());  // [1-1] login 액션요청 하여 상태변경한다. (전역변수 상태변경)
+        const obj={id:3,name:"유재석"} // [1-2] login 액션에 보낼 데이터
+        dispatch(login(obj)); //[1-3] 매개변수를 포함한 login 액션 요청
+        console.log(obj);
+        navigate("/")       // [2-2] 라우터에 등록된 "/" 메인페이지 URL로 이동(페이지 전환)
+     }
+    return (<>
+        <h3> 로그인 페이지 </h3>
+        <button onClick={onLogin}>로그인버튼</button>
+    </>)
+}//func end
