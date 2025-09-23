@@ -53,6 +53,11 @@ const create = createRoot(root);
 // import Task5 from './example/day03/Task5';
 
 //day04
-import Movie from './example/day04/movie';
+// import Movie from './example/day04/movie';
 
-create.render(<Movie/>)
+//day04_2
+// import Component11 from './example/day04_2/Component11';
+import Component12 from './example/day04_2/Component12';
+// import Task6 from './example/day04_2/Task6';
+
+create.render(<Component12/>)
