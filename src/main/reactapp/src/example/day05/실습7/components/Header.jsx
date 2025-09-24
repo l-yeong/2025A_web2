@@ -20,6 +20,8 @@ export default function Header(props) {
         navigate("/");
     }
 
+    // 서버에게 로그인 상태 요청 useEffect(()=>{})
+
     return (<>
         {isAuthenticated == true
             ?

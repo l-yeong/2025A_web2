@@ -72,10 +72,15 @@ const create = createRoot(root);
 //day05 -> 실습7
 import App from './example/day05/실습7/App';
 import { Provider } from 'react-redux';
-import store from './example/day05/실습7/store/store';
-create.render(
-    // 내가 만든 store를 root 컴포넌트에 공급하여 모든 컨포넌트가 사용 할수 있도록 전역변수
+import store, { persistor } from './example/day05/실습7/store/store';
+import { PersistGate } from 'redux-persist/integration/react';
+
+// [1] 내가 만든 store 를 root 컴포넌트에 공급하여 모든 컴포넌트가 사용할수 있도록 *전역변수*
+// [2] 내가 만든 persist 공급, loading : { 초기 로딩값 } persist = { 내가만든persiststore }
+create.render( 
   <Provider store={store}>
+    <PersistGate loding={null} persistor={persistor}>
     <App />
+    </PersistGate>
   </Provider>
 )
