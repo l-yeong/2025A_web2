@@ -59,6 +59,9 @@ const create = createRoot(root);
 // import Component11 from './example/day04_2/Component11';
 // import Component12 from './example/day04_2/Component12';
 // import Task6 from './example/day04_2/Task6';
+// create.render(
+//   <Task6 /> 
+// )
 
 
 //day05
@@ -86,11 +89,14 @@ const create = createRoot(root);
 
 //day06 -> 실습8
 import App from './example/day06/App';
-import {Provider} from 'react-redux';
-import store from './example/day06/store/store.jsx'
+import { Provider } from 'react-redux';
+import store, { persistor } from './example/day06/store/store.jsx'
+import { PersistGate } from 'redux-persist/integration/react';
 create.render(
   <Provider store={store}>
-  <App />
+    <PersistGate loading={null} persistor={persistor}>
+      <App />
+    </PersistGate>
   </Provider>
 )
 
