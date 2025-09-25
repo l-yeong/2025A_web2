@@ -2,6 +2,7 @@ DROP DATABASE IF EXISTS springweb2;
 CREATE DATABASE springweb2;
 USE springweb2;
 
+
 -- --------------------------------------- 실습1 ----------------------------------------
 CREATE TABLE products (
     product_id INT PRIMARY KEY AUTO_INCREMENT, -- 상품 ID (자동 증가)
@@ -33,18 +34,15 @@ INSERT INTO student (name, kor, math) VALUES ('이영희', 92, 95);
 INSERT INTO student (name, kor, math) VALUES ('박지민', 70, 65);
 INSERT INTO student (name, kor, math) VALUES ('최유리', 88, 82);
 
-select *from products;
-select *from student;
-
-
+-- --------------------------------------- day07 boardService13 ----------------------------------------
 create table board(
-        bno int auto_increment ,
+    bno int auto_increment ,
     bcontent longtext not null ,
     bwriter varchar(30) not null ,
     constraint primary key(bno)
 );
--- --------------------------------------- day07 example ----------------------------------------
 
+# 샘플
 INSERT INTO board (bcontent, bwriter) VALUES ('안녕하세요', '유재석');
 INSERT INTO board (bcontent, bwriter) VALUES ('오늘도 좋은 하루 되세요!', '김태호');
 INSERT INTO board (bcontent, bwriter) VALUES ('점심 뭐 드셨나요?', '박명수');
@@ -87,51 +85,9 @@ INSERT INTO board (bcontent, bwriter) VALUES ('운전 조심하세요~', '태연
 
 select * from board;
 
--- --------------------------------------- Task5 example ----------------------------------------
-
-create table Task5(
-tno int auto_increment primary key,
-tname varchar(20),
-tphone varchar(13),
-tage varchar(5));
-
-insert into task5(tname,tphone,tage) values("유재석","010-1111-1111",40);
-SELECT *FROM task5;
-use springweb2;
-
-
--- --------------------------------------- movie example --------------------------------------
-create table movie(
-mno int auto_increment primary key,
-mtitle varchar(30),
-mname varchar(15),
-mpwd varchar(30),
-mgenre varchar(30),
-mcontent longtext
+-- --------------------------------------- day09 boardService13 ----------------------------------------
+CREATE TABLE trans(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    money INT UNSIGNED DEFAULT 0
 );
-
-INSERT INTO movie(mtitle, mname,mpwd, mgenre, mcontent) VALUES
-('인셉션', '크리스토퍼 놀란',1234,'SF', '꿈속의 꿈을 탐험하는 스릴 넘치는 액션 영화'),
-('기생충', '봉준호',4567,'드라마', '두 가족의 삶이 얽히며 벌어지는 사회 풍자극'),
-('어벤져스: 엔드게임','안소니 루소, 조 루소',123123, '액션', '히어로들이 우주를 구하기 위해 마지막 전투를 벌이는 이야기'),
-('센과 치히로의 행방불명','미야자키 하야오',456456, '애니메이션', '이세계에 빠진 소녀가 가족을 구하기 위해 모험을 떠나는 이야기'),
-('라라랜드', '데이미언 셔젤',123456,'로맨스', '꿈을 좇는 예술가들의 사랑과 성장 이야기');
-
-create table moviereview(
-rno int auto_increment primary key,
-mno int,
-foreign key(mno) references movie(mno) ON DELETE CASCADE,
-rpwd varchar(30),
-rcontent varchar(255)
-);
-
-INSERT INTO moviereview (mno, rpwd, rcontent) VALUES
-(1, 'pass1234', '복잡하지만 정말 흥미로운 영화! 끝나고 나서도 여운이 오래 남아요.'),
-(2, 'secret5678', '사회 문제를 이렇게 스릴 있게 표현할 수 있다니... 최고입니다.'),
-(3,  'endgame2025', '마블의 대서사시를 완벽하게 마무리한 감동적인 영화였습니다.'),
-(4, 'no_face', '환상적인 세계관과 감성적인 이야기… 지브리 작품 중 최고!'),
-(5, 'lalalove', '현실적인 로맨스와 감성적인 음악이 어우러진 명작입니다.');
-
-select *from movie;
-select *from moviereview;
-
