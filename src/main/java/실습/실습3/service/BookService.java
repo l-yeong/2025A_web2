@@ -21,14 +21,21 @@ public class BookService {
     @Transactional
     public boolean borrowBook(Map<String,Object>bookList){
         //대출
+        // 1-1 책 재고 차감
         int stock = Integer.parseInt(String.valueOf(bookList.get("stock")));
         String title = String.valueOf(bookList.get("title"));
         boolean result1 = bookMapper.borrowBook(stock,title);
 
-        //대출 로그 기록
+        // 1-2 만약에 책 재고 처리가 실패이면 롤백
+        if(result1==false) throw new RuntimeException("[대여실패] 책 없음");
+
+        // 2-1 책 대여 기록
         int book_id = Integer.parseInt(String.valueOf(bookList.get("book_id")));
         String member = String.valueOf(bookList.get("member"));
         boolean result2 = bookMapper.borrowBookLog(book_id,member);
+
+        // 2-2 책 대여 기록 처리가 실패하면 롤백
+        if(result2==false) throw new RuntimeException("[대여기록실패] 오류");
 
         return true;
     }//func end
@@ -40,10 +47,14 @@ public class BookService {
         String title = String.valueOf(bookListReturn.get("title"));
         boolean result1 = bookMapper.returnBook(stock,title);
 
+        if(result1==false) throw new RuntimeException("[반납실패] 책 없음");
+
         //반납기록
         int book_id = Integer.parseInt(String.valueOf(bookListReturn.get("book_id")));
         String member = String.valueOf(bookListReturn.get("member"));
         boolean result2 = bookMapper.returnBookLog(book_id,member);
+
+        if(result2==false) throw new RuntimeException("[반납기록실패] 오류");
 
         return true;
     }//func end
