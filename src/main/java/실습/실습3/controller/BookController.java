@@ -36,8 +36,8 @@ public class BookController {
             log.debug("[대여성공]"+bookList);
             return ResponseEntity.ok(result);
         } catch (RuntimeException e) {
-            log.debug("[대여실패]"+e.getMessage()); //만약에 롤백이면 e.getMessage():예외메시지
-            return ResponseEntity.status(405).body(result);
+            log.debug("[대여실패]"+bookList+e.getMessage()); //만약에 롤백이면 e.getMessage():예외메시지
+            return ResponseEntity.status(400).body(result);
         }
 
     }//func end
