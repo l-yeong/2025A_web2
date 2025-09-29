@@ -1,10 +1,8 @@
 package 실습.실습3.service;
 
-import example.day09.TransService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import 실습.실습3.model.dto.BookDto;
 import 실습.실습3.model.mapper.BookMapper;
 
 import java.util.Map;
@@ -21,40 +19,34 @@ public class BookService {
     @Transactional
     public boolean borrowBook(Map<String,Object>bookList){
         //대출
-        // 1-1 책 재고 차감
-        int stock = Integer.parseInt(String.valueOf(bookList.get("stock")));
-        String title = String.valueOf(bookList.get("title"));
-        boolean result1 = bookMapper.borrowBook(stock,title);
+        int bookid = Integer.parseInt(String.valueOf(bookList.get("bookid")));
+        String member = String.valueOf(bookList.get("member"));
 
+        // 1-1 책 재고 차감
+        int result1 = bookMapper.borrowBook(bookid);
         // 1-2 만약에 책 재고 처리가 실패이면 롤백
-        if(result1==false) throw new RuntimeException("[대여실패] 책 없음");
+        if(result1==0) throw new RuntimeException("[대여실패] 책 없음");
+
 
         // 2-1 책 대여 기록
-        int book_id = Integer.parseInt(String.valueOf(bookList.get("book_id")));
-        String member = String.valueOf(bookList.get("member"));
-        boolean result2 = bookMapper.borrowBookLog(book_id,member);
-
+        int result2 = bookMapper.borrowBookLog(bookid,member);
         // 2-2 책 대여 기록 처리가 실패하면 롤백
-        if(result2==false) throw new RuntimeException("[대여기록실패] 오류");
-
+        if(result2==0) throw new RuntimeException("[대여기록실패] 오류");
         return true;
     }//func end
 
     @Transactional
     public boolean returnBook(Map<String,Object>bookListReturn){
         //반납
-        int stock = Integer.parseInt(String.valueOf(bookListReturn.get("stock")));
-        String title = String.valueOf(bookListReturn.get("title"));
-        boolean result1 = bookMapper.returnBook(stock,title);
+        int bookid = Integer.parseInt(String.valueOf(bookListReturn.get("bookid")));
+        String member = String.valueOf(bookListReturn.get("member"));
+        int result1 = bookMapper.returnBook(bookid);
 
-        if(result1==false) throw new RuntimeException("[반납실패] 책 없음");
+        if(result1==0) throw new RuntimeException("[반납실패] 책 없음");
 
         //반납기록
-        int book_id = Integer.parseInt(String.valueOf(bookListReturn.get("book_id")));
-        String member = String.valueOf(bookListReturn.get("member"));
-        boolean result2 = bookMapper.returnBookLog(book_id,member);
-
-        if(result2==false) throw new RuntimeException("[반납기록실패] 오류");
+        int result2 = bookMapper.returnBookLog(bookid,member);
+        if(result2==0) throw new RuntimeException("[반납기록실패] 오류");
 
         return true;
     }//func end
