@@ -34,6 +34,9 @@ SHOW COLUMNS FROM employee; -- 특정한 테이블의 레코드 정보 확인 (�
 ALTER TABLE employee ADD CONSTRAINT employee_pk PRIMARY KEY (id);
 
 # [8] 제약조건 삭제
+# ALTER TABLE 테이블명 DROP PRIMARY KEY; -- 프라이머리키 삭제
+ALTER TABLE employee DROP PRIMARY KEY;
+#ALTER TABLE 테이블명 DROP FOREIGN KEY 삭제할 FK명;
 # ALTER TABLE 테이블명 DROP CONSTRAINT 삭제할제약조건명;
 ALTER TABLE employee DROP CONSTRAINT employee_pk;
 
