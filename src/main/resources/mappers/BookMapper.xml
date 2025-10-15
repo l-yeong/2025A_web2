@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- XML 이란? 마크업 이용한 데이터 저장(설정)/전달/교환(API) 프로그래밍언어 -->
+<!-- XML : 마크업 이용한 웹페이지 마크업언어 -->
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- XML 파일내 mybatis 라이브러리 설정 -->
+
+<!-- XML 과 매핑할 인터페이스 설정, [src] 이하 경로 지정 -->
+<!-- <mapper namespace="매핑할 인터페이스 파일 경로"> -->
+<mapper namespace="실습.실습4.model.mapper.BookMapper"> <!-- mapper 시작 -->
+
+    <!-- 등록 -->
+    <insert id="bookWrite" parameterType="실습.실습4.model.dto.BookDto" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO books(title,stock)values(#{title},#{stock})
+    </insert>
+
+    <!-- 대출 기록 검색 -->
+    <select id="bookSearch" parameterType="실습.실습4.model.dto.BookDto">
+        select r.*,b.title AS title FROM rentals r left join books b on b.id = r.book_id
+        <where>
+            <if test="member != null and member != ''">
+                and r.member like concat('%',#{member},'%')
+            </if>
+            <if test="title != null and title != ''">
+                and b.title like concat('%',#{title},'%')
+            </if>
+        </where>
+    </select>
+
+</mapper><!-- mapper 끝 -->
