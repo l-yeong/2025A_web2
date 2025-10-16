@@ -13,19 +13,19 @@
 <!-- <mapper namespace="매핑할 인터페이스 파일 경로"> -->
 <mapper namespace="실습.실습5.model.mapper.BookMapper"> <!-- mapper 시작 -->
 
-    <!-- price 추가 -->
+    <!-- 조건 2-1 -->
     <update id="addPrice">
         ALTER TABLE books add column price int
     </update>
-    <!-- title 타입 longtext로 변경 -->
+    <!-- 조건 2-2 -->
     <update id="updateTitle">
         ALTER TABLE books modify title longtext
     </update>
-    <!-- 평균재고보다 많은 도서 조회 -->
+    <!-- 3-1 -->
     <select id="avgBook" resultType="실습.실습5.model.dto.BookDto">
         SELECT * FROM books WHERE stock > (SELECT avg(stock) FROM books)
     </select>
-    <!-- 가장많이 대출한 도서 조회 -->
+    <!-- 3-2 -->
     <select id="rentalBook" resultType="String">
         SELECT b.title , (SELECT count(*) FROM rentals r WHERE b.id = r.id) as total
         FROM books b order by total desc limit 0,1

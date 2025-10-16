@@ -43,3 +43,7 @@ day93 SPRING WEB2 ] 실습6 : 도서 view 생성 및 조회 기능 XML 만들기
     SELECT * FROM rentals;
 
 [ 제출방법 ] 코드가 작성된 파일이 위치한 GitHub 상세 주소를 제출하시오.
+
+1. -- 대출기록 상세 뷰 생성
+   create or replace VIEW rentalLog AS select r.id as rentals_id, r.book_id,r.member,r.rent_date,r.return_date, b.* FROM rentals r inner join books b on r.book_id = b.id;
+2. -- 평균 재고 보다 많은 재고를 가진 도서뷰 생성

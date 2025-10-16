@@ -7,8 +7,12 @@ import java.util.List;
 
 @Mapper
 public interface BookMapper {
+
     boolean addPrice ();
+
     boolean updateTitle();
+
     List<BookDto> avgBook();
+
     String rentalBook();
 }//inter end

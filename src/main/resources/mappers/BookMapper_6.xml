@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- XML 이란? 마크업 이용한 데이터 저장(설정)/전달/교환(API) 프로그래밍언어 -->
+<!-- XML : 마크업 이용한 웹페이지 마크업언어 -->
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- XML 파일내 mybatis 라이브러리 설정 -->
+
+<!-- XML 과 매핑할 인터페이스 설정, [src] 이하 경로 지정 -->
+<!-- <mapper namespace="매핑할 인터페이스 파일 경로"> -->
+<mapper namespace="실습.실습6.model.mapper.BookMapper"> <!-- mapper 시작 -->
+    <!-- 조건 2-1 -->
+    <update id="addRenTalLog">
+        CREATE OR REPLACE VIEW rentalLog AS SELECT b.title , (SELECT count(*) FROM rentals r WHERE b.id = r.id) as total FROM books b order by total desc limit 0,1;
+    </update>
+    <!-- 조건 2-2-->
+    <update id="addAvgStock">
+        create or replace VIEW avgStock AS SELECT * FROM books WHERE stock > (SELECT avg(stock) FROM books);
+    </update>
+
+    <!-- 조건 3-1 -->
+    <select id="rentalLogList" resultType="실습.실습6.model.dto.BookDto">
+        select *from rentalLog;
+    </select>
+    <!-- 조건 3-2 -->
+    <select id="addAvgStockList" resultType="실습.실습6.model.dto.BookDto">
+        select *from avgStock;
+    </select>
+
+</mapper><!-- mapper 끝 -->
