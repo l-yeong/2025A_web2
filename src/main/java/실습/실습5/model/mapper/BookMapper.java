@@ -7,5 +7,8 @@ import java.util.List;
 
 @Mapper
 public interface BookMapper {
-    List<BookDto> bookAvg(BookDto bookDto);
+    boolean addPrice ();
+    boolean updateTitle();
+    List<BookDto> avgBook();
+    String rentalBook();
 }//inter end
