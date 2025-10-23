@@ -54,6 +54,8 @@ dependencies {
     runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.6'
     // [13] Security
     implementation 'org.springframework.boot:spring-boot-starter-security'
+    // [14] oath2 관련 Token
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 
 
 
