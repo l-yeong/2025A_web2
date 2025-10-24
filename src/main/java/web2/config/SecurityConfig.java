@@ -3,6 +3,7 @@ package web2.config;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
@@ -16,6 +17,7 @@ public class SecurityConfig {
     // 시큐리티(보안)필터(검증/확인) 체인(연결고리)
     // 미리 만들어진 필터들이 다수 ...... 그런 필터들을 커스텀(수정)/제외/끄기
     private final JwtAuthFilter jwtAuthFilter;
+    private final Oauth2SuccessHandler oath2SuccessHandler;
     // !! : HTTP 관련 필터들을 커스텀, HTTP는 요청과 응답처리하는 웹 아키텍처
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -40,9 +42,17 @@ public class SecurityConfig {
         // [3-2] UsernamePasswordAuthenticationFilter 을 개발자가 만든 토큰 대체
         //http.addFilterBefore(내가만든토큰객체필터, UsernamePasswordAuthenticationFilter.class)
         http.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+        // [4] oauth2 로그인 필터 사용 설정
+        //http.oauth2Login(매개변수 -> 매개변수.successHandler(로그인성공시클래스이동));
+        http.oauth2Login( o -> o
+                        .loginPage("/oauth2/authorization/google")
+                        .successHandler(oath2SuccessHandler));
+
+        // [5] 시큐리티의 CORS 정책을 기본(우리가 설정한 CorsConfig 클래스) 설정하기
+        http.cors(Customizer.withDefaults());
+
 
         return http.build(); // 커스텀 완료된 객체 반환
-
     }//func end
 
 }//class end

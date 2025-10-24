@@ -107,8 +107,13 @@ const create = createRoot(root);
 //       <Component14 />
 // );
 
-//day08
-import Component15 from './example/day08/Component15';
+// //day08
+// import Component15 from './example/day08/Component15';
+// create.render(
+//   <Component15/>
+// )
+// //web2
+import App from './web2/App.jsx';
 create.render(
-  <Component15/>
+<App/>
 )
