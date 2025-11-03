@@ -30,5 +30,12 @@
 
     2. 사용법
         1) 선언 : 클래스 위에 @Entity 주입 한다.
-        + 엔티티 1개당 @id 필수다. (primary key)
+            + 엔티티 1개당 @id 필수다. (primary key)
         2) Entity 매핑 설정, application.properties
+
+[ 리포지토리 ] Repository
+    1. 정의 : 기본적인 CRUD 작업을 제공하는 인퍼에스, +동적쿼리
+    2. 사용법
+        1) 인터페이스 생성
+        2) extends JpaRepository<T,ID> 상속 받는다
+        3) @Repository
