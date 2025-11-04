@@ -9,18 +9,20 @@ import lombok.*;
 
 public class goodsEntity {
 
-    @Id //PK 필드 주입 :: JPA는 엔티티 1개당 PK필드는 1개이상 필수 이다
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //auto_increment 주입 :: MYSQL만 가능
-    private int gno;        // 제품번호
+    @Id // PK필드 주입 :: JPA는 엔티티 1개당 PK필드는 1개이상 필수이다.
+    @GeneratedValue( strategy = GenerationType.IDENTITY ) // auto_increment 주입 :: MYSQL 만 가능
+    private int gno;        // 제품번호     , 자바 int -->  DB int
 
-    @Column(nullable = false,length = 100) //@Column(속성명=값,속성명=값),
-    // null 제외, 글자수 100
-    private String gname;   // 제품명
+    @Column( nullable = false , length = 100) // @Column( 속성명 = 값 , 속성명 = 값 ) ,
+    // nullable = null  : NULL 제외 ,
+    // length = 100 : 최대글자수
+    private String gname;   // 제품명      , 자바 String -->  DB varchar(255)
 
-    @Column(nullable = true) // null 포함
+    @Column( nullable = true ) // null 포함
     private int gprice;     // 제품가격
 
-    @Column(columnDefinition = "varchar(100) default '제품설명' not null")
+    @Column( columnDefinition = "varchar(100) default '제품설명' not null " )
+    // columnDefinition = "SQL 구문 직접 작성"
     private String gdesc;   // 제품설명
 
 }//class end
