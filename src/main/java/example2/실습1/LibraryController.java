@@ -1,6 +1,5 @@
-package example2.실습2;
+package example2.실습1;
 
-import example2.day01.ExamEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

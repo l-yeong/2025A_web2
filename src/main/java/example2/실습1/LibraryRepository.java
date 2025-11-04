@@ -1,4 +1,4 @@
-package example2.실습2;
+package example2.실습1;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

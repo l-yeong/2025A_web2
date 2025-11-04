@@ -1,4 +1,4 @@
-package example2.실습2;
+package example2.실습1;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
