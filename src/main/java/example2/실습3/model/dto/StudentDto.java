@@ -10,11 +10,16 @@ import lombok.NoArgsConstructor;
 public class StudentDto {
 
     private int studentId;
-    private int studentName;
+    private String studentName;
+    private String createdAt;
+    private String updatedAt;
 
     //DTO --> Entity 변환
-    public StudentEntity toEntity(){
-        return
+    public StudentEntity toStudentEntity(){
+        return StudentEntity.builder()
+                .studentId(this.studentId)
+                .studentName(this.studentName)
+                .build();
     }
 
 }//class end
