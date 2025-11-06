@@ -83,7 +83,7 @@ VALUES
 ('guest', '$2a$10$69bMrChodVYxOcvM/cUo7evsho3hw6YBJT9yepHudwBlIvi7KlV0.', '손님', '010-0000-0000', 'USER');
 
 -- ============================================ 연관관계==================================
-INSERT INTO ecategory (cno, cname) VALUES
-(1, '공지사항'),
-(2, '자유게시판'),
-(3, 'Q&A게시판');
+--INSERT INTO ecategory (cno, cname) VALUES
+--(1, '공지사항'),
+--(2, '자유게시판'),
+--(3, 'Q&A게시판');
