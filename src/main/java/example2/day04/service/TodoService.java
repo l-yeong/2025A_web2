@@ -20,6 +20,47 @@ import java.util.stream.Collectors;
 public class TodoService {
     private final TodoRepository todoRepository;
 
+    // 전체 조회
+    public List<TodoDto> findAll(){
+        return todoRepository.findAll()
+                .stream().map(TodoEntity::toDto)
+                .collect(Collectors.toList());
+    }//func end
+
+    // 개별조회
+    public TodoDto findById(int id){
+        Optional<TodoEntity> optional= todoRepository.findById(id);
+        if(optional.isPresent()){
+            TodoEntity todoEntity = optional.get();
+            return todoEntity.toDto();
+        }
+        System.out.println(optional);
+        return null;
+    }//func end
+
+    // 개별수정
+    public TodoDto update(TodoDto todoDto){
+        Optional<TodoEntity> optional = todoRepository.findById(todoDto.getId());
+        if(optional.isPresent()){
+            TodoEntity entity = optional.get();
+            //JPA는 수정함수가 별도로 존재하지않고 setter 이용한 영속성 수정
+            entity.setTitle(todoDto.getTitle());
+            entity.setContent(todoDto.getContent());
+            entity.setDone(todoDto.isDone()); // boolean setter는 isXXX
+            return entity.toDto();
+        }
+        return null;
+    }//func end
+
+    // 개별 삭제
+    public boolean delete(int id){
+        if(todoRepository.existsById(id)){
+            todoRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }//func end
+
     //[1] TodoRepository 2-1,3-1
     public List<TodoDto> query1(String title){
 
